@@ -1,0 +1,593 @@
+/* =========================================================
+   Cloudy Moon — a dark Obsidian theme
+   Deep navy canvas, steel-blue accents, soft clouds and a crescent
+   moon in the top-right corner of each note.
+   Dark mode only. Install: <vault>/.obsidian/themes/Cloudy Moon/
+   (theme.css + manifest.json), then Settings → Appearance → Themes.
+   ========================================================= */
+
+/* stylelint-disable selector-class-pattern -- class names such as HyperMD-quote,
+   HyperMD-header-1, edgeLabel or nodeLabel belong to Obsidian and Mermaid and
+   cannot be renamed */
+
+/* Dark mode only: every variable and rule is scoped to .theme-dark, so in light
+   mode Obsidian's default look (colours, fonts, sizes, line width) is untouched. */
+.theme-dark {
+  /* ---- palette ---- */
+  --on-night-0: #070c15;
+  --on-night-1: #0b121e;
+  --on-night-2: #0e1625;
+  --on-night-3: #131d30;
+  --on-night-4: #1a2639;
+  --on-line:    #1b2639;
+  --on-blue:    #5b9bd5;
+  --on-blue-hi: #7fb3e6;
+  --on-teal:    #4fb3bf;
+  --on-green:   #5fc4a8;
+  --font-interface-theme: "Inter", -apple-system, "BlinkMacSystemFont", "Segoe UI", sans-serif;
+  --font-text-theme:      "Inter", -apple-system, "BlinkMacSystemFont", "Segoe UI", sans-serif;
+  --font-monospace-theme: "JetBrains Mono", "Fira Code", "SF Mono", "Menlo", "Consolas", monospace;
+
+  /* ---- headings ---- */
+  --h1-weight: 700;
+  --h2-weight: 700;
+  --h3-weight: 600;
+  --h1-size: 2.1em;
+  --h2-size: 1.6em;
+  --h3-size: 1.3em;
+
+  /* ---- shape ---- */
+  --radius-s: 5px;
+  --radius-m: 8px;
+  --radius-l: 12px;
+
+  /* ---- layout ---- */
+
+  /* readable line length: 20% wider than Obsidian's default 700px;
+     tables use this as their minimum width, so they follow automatically */
+  --file-line-width: 840px;
+}
+
+.theme-dark {
+  color-scheme: dark;
+
+  /* ---- surfaces ---- */
+  --background-primary:        var(--on-night-1);
+  --background-primary-alt:    var(--on-night-2);
+  --background-secondary:      var(--on-night-2);
+  --background-secondary-alt:  var(--on-night-0);
+  --background-modifier-border:        var(--on-line);
+  --background-modifier-border-hover:  #26344d;
+  --background-modifier-border-focus:  var(--on-blue);
+  --background-modifier-hover:         rgb(127 179 230 / 8%);
+  --background-modifier-active-hover:  rgb(91 155 213 / 16%);
+  --background-modifier-form-field:    var(--on-night-0);
+  --background-modifier-cover:         rgb(4 8 14 / 70%);
+  --background-modifier-box-shadow:    rgb(0 0 0 / 60%);
+
+  /* ---- text ---- */
+  --text-normal:      #d7dfeb;
+  --text-muted:       #8a97ab;
+  --text-faint:       #5b677a;
+  --text-on-accent:   #06101c;
+  --text-accent:      var(--on-blue-hi);
+  --text-accent-hover: #a3c9ee;
+  --text-selection:   rgb(91 155 213 / 30%);
+  --text-highlight-bg: rgb(79 179 191 / 28%);
+
+  /* ---- accent ---- */
+  --accent-h: 209;
+  --accent-s: 61%;
+  --accent-l: 60%;
+  --interactive-accent:       var(--on-blue);
+  --interactive-accent-hover: var(--on-blue-hi);
+  --interactive-normal:       var(--on-night-3);
+  --interactive-hover:        var(--on-night-4);
+
+  /* ---- headings ---- */
+
+  /* fallback solid colours (used where gradients can't apply, e.g. outline);
+     taken from the slate-blue heading gradient, brightest at h1 */
+  --h1-color: #b4c2cf;
+  --h2-color: #a6b6c7;
+  --h3-color: #97aabe;
+  --h4-color: #889eb6;
+  --h5-color: #7992af;
+  --h6-color: #6a87a9;
+
+  /* ---- text bits ---- */
+  --bold-color:   var(--text-normal);
+  --italic-color: var(--text-normal);
+  --link-color:            var(--on-blue-hi);
+  --link-color-hover:      #a3c9ee;
+  --link-external-color:   var(--on-teal);
+  --link-unresolved-color: #7390ad;
+
+  /* list bullets/numbers use the heading colour (brightest point of the heading gradient) */
+  --list-marker-color:       var(--h1-color);
+  --list-marker-color-hover: var(--text-normal);
+
+  /* checkboxes match the list bullets: heading colour, dark tick on the light fill */
+  --checkbox-color:              var(--h1-color);
+  --checkbox-color-hover:        var(--text-normal);
+  --checkbox-border-color:       var(--h1-color);
+  --checkbox-border-color-hover: var(--text-normal);
+  --checkbox-marker-color:       var(--background-primary);
+  --blockquote-border-color: var(--on-teal);
+  --blockquote-color:        #a9b8cc;
+  --hr-color: var(--on-line);
+
+  /* ---- code ---- */
+  --code-background: #080e18;
+  --code-normal:     #9fc6ea;
+  --code-comment:    #5b6e86;
+  --code-keyword:    #7fb3e6;
+  --code-function:   var(--on-green);
+  --code-string:     #e3c98d;
+  --code-value:      #c3a6f0;
+  --code-property:   #4fb3bf;
+  --code-tag:        #e58a8a;
+  --code-punctuation:#8a97ab;
+  --code-important:  #f0a56a;
+
+  /* ---- chrome ---- */
+  --titlebar-background:        var(--on-night-0);
+  --titlebar-background-focused: var(--on-night-0);
+  --titlebar-text-color:        var(--text-muted);
+  --tab-container-background:   transparent;
+  --tab-background-active:      var(--on-night-3);
+  --tab-text-color:             var(--text-muted);
+  --tab-text-color-active:      var(--text-normal);
+  --tab-text-color-focused:     var(--text-normal);
+  --ribbon-background:          var(--on-night-0);
+  --ribbon-background-collapsed: var(--on-night-1);
+  --nav-item-background-active:  rgb(79 179 191 / 20%);
+  --nav-item-background-hover:   rgb(127 179 230 / 8%);
+  --nav-item-color-active:       #e6f0fb;
+  --nav-item-color-hover:        var(--text-normal);
+  --nav-indentation-guide-color: var(--on-line);
+  --scrollbar-thumb-bg:        rgb(127 179 230 / 14%);
+  --scrollbar-active-thumb-bg: rgb(127 179 230 / 32%);
+
+  /* ---- tables ---- */
+  --table-header-color:       var(--on-blue-hi);
+  --table-header-weight:      600;
+  --table-border-color:       var(--on-line);
+  --table-header-border-color: var(--on-teal);
+  --table-header-border-width: 2px;
+  --table-row-background-hover: rgb(127 179 230 / 7%);
+
+  /* ---- theme extras (colours used by the rules further down) ---- */
+  --on-sky-glow:               rgb(54 86 128 / 35%);
+  --on-heading-shadow-1:       rgb(0 0 0 / 45%);
+  --on-heading-shadow-2:       rgb(0 0 0 / 40%);
+  --on-heading-shadow-3:       rgb(0 0 0 / 35%);
+
+  /* quote backgrounds; nested quotes in Live Preview stack the 5% tint
+     like Reading view does (1 - 0.95^level) */
+  --on-quote-background:       rgb(79 179 191 / 5%);
+  --on-quote-background-2:     rgb(79 179 191 / 9.75%);
+  --on-quote-background-3:     rgb(79 179 191 / 14.3%);
+  --on-quote-background-4:     rgb(79 179 191 / 18.5%);
+  --on-quote-background-5:     rgb(79 179 191 / 22.6%);
+  --on-tag-background:         rgb(91 155 213 / 16%);
+  --on-tag-background-hover:   rgb(91 155 213 / 28%);
+  --on-tag-done-background:    rgb(79 179 191 / 18%);
+  --on-tag-done-color:         #6fd0da;
+  --on-tag-blocked-background: rgb(229 138 138 / 16%);
+  --on-tag-blocked-color:      #f0a5a5;
+  --on-inline-code-background: rgb(91 155 213 / 12%);
+  --on-focus-ring:             rgb(91 155 213 / 35%);
+}
+
+/* ---------------------------------------------------------
+   Fonts
+   --------------------------------------------------------- */
+.theme-dark { --font-interface: var(--font-interface-theme); }
+
+.theme-dark .markdown-source-view,
+.theme-dark .markdown-preview-view { font-family: var(--font-text-theme); }
+
+.theme-dark code,
+.theme-dark pre,
+.theme-dark .cm-s-obsidian .cm-inline-code,
+.theme-dark .HyperMD-codeblock { font-family: var(--font-monospace-theme); }
+
+/* Note panes: let content such as tables measure widths against the whole pane
+   (100cqw), used by the content-sized tables further down */
+.theme-dark .markdown-preview-view,
+.theme-dark .markdown-source-view {
+  container-type: inline-size;
+}
+
+/* ---------------------------------------------------------
+   Clouds and crescent moon — top-right corner of each note, below its header.
+   Cloud banks are SVG fractal-noise textures faded out by radial masks;
+   a glowing crescent moon sits behind them. Painted on the note's scrolling area (Live Preview/Source and
+   Reading view) so it sits under text and scrolls away with it.
+   --------------------------------------------------------- */
+.theme-dark .workspace-split.mod-root {
+  background-color: var(--on-night-1);
+}
+
+/* Reading view paints its own solid background — clear it to match Live Preview */
+.theme-dark .workspace-leaf-content.is-read-mode .markdown-preview-view {
+  background-color: transparent;
+}
+
+.theme-dark .workspace-leaf-content[data-type="markdown"] .markdown-source-view.mod-cm6 > .cm-editor > .cm-scroller,
+.theme-dark .workspace-leaf-content[data-type="markdown"] .markdown-preview-view:not(.markdown-embed .markdown-preview-view) {
+  background-attachment: local;
+  background-image:
+    /* clouds + crescent moon in one picture; the moon sits behind the cloud banks */
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1100' height='360' viewBox='0 0 1100 360'><defs><filter id='c' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='0.006 0.014' numOctaves='5' seed='11'/><feColorMatrix values='0 0 0 0 0.50  0 0 0 0 0.64  0 0 0 0 0.84  0 0 0 1.9 -0.78'/></filter><radialGradient id='g' cx='1' cy='0' r='0.95'><stop offset='0' stop-color='white'/><stop offset='0.55' stop-color='%23666'/><stop offset='1' stop-color='black'/></radialGradient><mask id='m'><rect width='100%25' height='100%25' fill='url(%23g)'/></mask><filter id='c2' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.026' numOctaves='6' seed='23'/><feColorMatrix values='0 0 0 0 0.30  0 0 0 0 0.40  0 0 0 0 0.56  0 0 0 3.4 -1.15'/></filter><radialGradient id='g2' gradientUnits='userSpaceOnUse' cx='915' cy='150' r='78' gradientTransform='translate(915 150) scale(2.4 1) translate(-915 -150)'><stop offset='0' stop-color='white'/><stop offset='0.4' stop-color='white'/><stop offset='0.75' stop-color='%23555'/><stop offset='1' stop-color='black'/></radialGradient><mask id='m2'><rect width='100%25' height='100%25' fill='url(%23g2)'/></mask><filter id='c3' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='0.004 0.05' numOctaves='4' seed='8'/><feColorMatrix values='0 0 0 0 0.62  0 0 0 0 0.74  0 0 0 0 0.90  0 0 0 2.6 -1.05'/></filter><radialGradient id='g3' gradientUnits='userSpaceOnUse' cx='900' cy='92' r='95' gradientTransform='translate(900 92) scale(1.6 1) translate(-900 -92)'><stop offset='0' stop-color='white'/><stop offset='0.6' stop-color='%23888'/><stop offset='1' stop-color='black'/></radialGradient><mask id='m3'><rect width='100%25' height='100%25' fill='url(%23g3)'/></mask><radialGradient id='hg' gradientUnits='userSpaceOnUse' cx='900' cy='95' r='170'><stop offset='0' stop-color='%23dbe9f8' stop-opacity='0.26'/><stop offset='0.25' stop-color='%23a9c6e6' stop-opacity='0.14'/><stop offset='0.6' stop-color='%237f9fc6' stop-opacity='0.05'/><stop offset='1' stop-color='%236f8fb8' stop-opacity='0'/></radialGradient><radialGradient id='mb' gradientUnits='userSpaceOnUse' cx='918' cy='108' r='58'><stop offset='0' stop-color='%23f4f9ff'/><stop offset='0.7' stop-color='%23cddcec'/><stop offset='1' stop-color='%23a3b8d0'/></radialGradient><clipPath id='mc'><circle cx='905' cy='92' r='44'/></clipPath><filter id='mt' x='855' y='42' width='100' height='100' filterUnits='userSpaceOnUse'><feTurbulence type='fractalNoise' baseFrequency='0.045' numOctaves='4' seed='5'/><feColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.45  0 0 0 0 0.58  0 0 0 1.1 -0.38'/></filter><filter id='sb' x='830' y='10' width='150' height='140' filterUnits='userSpaceOnUse'><feGaussianBlur stdDeviation='3'/></filter><mask id='cres' maskUnits='userSpaceOnUse' x='830' y='20' width='140' height='140'><rect x='830' y='20' width='140' height='140' fill='white'/><circle cx='895' cy='75' r='46' fill='black' filter='url(%23sb)'/></mask><filter id='mg' x='-40%25' y='-40%25' width='180%25' height='180%25'><feGaussianBlur stdDeviation='7'/></filter><filter id='soft' x='820' y='20' width='170' height='150' filterUnits='userSpaceOnUse'><feGaussianBlur stdDeviation='1.4'/></filter><radialGradient id='spill' gradientUnits='userSpaceOnUse' cx='895' cy='112' r='85' gradientTransform='translate(895 112) scale(1.5 1) translate(-895 -112)'><stop offset='0' stop-color='%23cfe3f8' stop-opacity='0.34'/><stop offset='0.5' stop-color='%239fc0e2' stop-opacity='0.12'/><stop offset='1' stop-color='%239fc0e2' stop-opacity='0'/></radialGradient></defs><circle cx='900' cy='95' r='170' fill='url(%23hg)'/><g filter='url(%23soft)' opacity='0.92'><g mask='url(%23cres)'><circle cx='905' cy='92' r='51' fill='%23bcd4ee' opacity='0.30' filter='url(%23mg)'/><circle cx='905' cy='92' r='44' fill='url(%23mb)'/><rect x='855' y='42' width='100' height='100' filter='url(%23mt)' clip-path='url(%23mc)' opacity='0.7'/></g></g><rect width='100%25' height='100%25' filter='url(%23c3)' mask='url(%23m3)' opacity='0.8'/><rect width='100%25' height='100%25' filter='url(%23c)' mask='url(%23m)'/><rect width='100%25' height='100%25' filter='url(%23c2)' mask='url(%23m2)'/><rect width='100%25' height='100%25' fill='url(%23spill)'/></svg>"),
+    radial-gradient(ellipse 35% 140px at 100% 0%, var(--on-sky-glow), transparent 70%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: right top, right top;
+
+  /* same width as before; height follows the picture's shape so the moon stays round */
+  background-size: min(600px, 50%) auto, 100% 100%;
+}
+
+.theme-dark .workspace-split.mod-root .workspace-tab-header-container,
+.theme-dark .workspace-split.mod-root .view-header,
+.theme-dark .workspace-split.mod-root .workspace-tabs,
+.theme-dark .workspace-split.mod-root .workspace-leaf-content,
+.theme-dark .workspace-split.mod-root .view-content { background-color: transparent; }
+
+.theme-dark .workspace-split.mod-root .view-content {
+  background-color: transparent;
+}
+
+/* ---------------------------------------------------------
+   Sidebars, file explorer
+   --------------------------------------------------------- */
+
+/* sidebars are .mod-left/right-split up to Obsidian 1.13 and
+   .mod-primary/secondary-split from 1.14 — both names are listed */
+.theme-dark .workspace-ribbon,
+.theme-dark .mod-left-split,
+.theme-dark .mod-right-split,
+.theme-dark .mod-primary-split,
+.theme-dark .mod-secondary-split {
+  border-color: var(--on-line);
+}
+
+.theme-dark .nav-file-title.is-active,
+.theme-dark .nav-folder-title.is-active {
+  background-color: var(--nav-item-background-active);
+  color: var(--nav-item-color-active);
+  border-radius: var(--radius-s);
+}
+
+.theme-dark .nav-file-title,
+.theme-dark .nav-folder-title { border-radius: var(--radius-s); }
+.theme-dark .nav-folder-title { color: var(--text-normal); }
+
+/* tabs */
+.theme-dark .workspace-tab-header.is-active {
+  background-color: var(--on-night-3);
+  border-radius: var(--radius-m) var(--radius-m) 0 0;
+  box-shadow: inset 0 -2px 0 var(--on-blue);
+}
+.theme-dark .workspace-tab-header:not(.is-active):hover { background-color: var(--background-modifier-hover); }
+
+/* ---------------------------------------------------------
+   Headings — all levels + note title get the blue gradient
+   --------------------------------------------------------- */
+
+/* Gradients are painted on the whole heading line/element and clipped to
+   the glyphs, so the "#" markers and the text share one continuous sweep
+   (as in the reference). Reading view and Live Preview/Source both covered. */
+.theme-dark {
+  /* dusky slate blue (hue ~211°, low saturation) taken from the reference palette,
+     lightened enough for text — the dark end keeps 4.35:1 contrast on the background;
+     lit from the bottom right, the same side the crescent moon is lit from.
+     A fixed 141deg angle (not "to bottom right") — the direction of the moon's
+     brightest point from its centre — so the change runs across the
+     width of a wide heading instead of only through the letter height. */
+  --on-grad-h1: linear-gradient(141deg, #5c7ca3 0%, #7992af 35%, #97aabe 75%, #b4c2cf 100%);
+}
+
+/* All heading levels (H1–H6) and the note title share the H1 gradient */
+.theme-dark .inline-title,
+.theme-dark .markdown-preview-view :is(h1, h2, h3, h4, h5, h6),
+.theme-dark .cm-s-obsidian :is(.HyperMD-header-1, .HyperMD-header-2, .HyperMD-header-3,
+                               .HyperMD-header-4, .HyperMD-header-5, .HyperMD-header-6) {
+  background-image: var(--on-grad-h1);
+  width: fit-content;
+  max-width: 100%;
+  /* stylelint-disable-next-line property-no-vendor-prefix -- iOS Safari before
+     15.5 only partly supports the unprefixed form, and Obsidian runs on iOS 15 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  letter-spacing: -0.005em;
+  caret-color: var(--text-normal);
+}
+
+.theme-dark .inline-title,
+.theme-dark .markdown-preview-view h1,
+.theme-dark .cm-s-obsidian .HyperMD-header-1 {
+  filter: drop-shadow(0 2px 5px var(--on-heading-shadow-1));
+}
+
+.theme-dark .markdown-preview-view h2,
+.theme-dark .cm-s-obsidian .HyperMD-header-2 {
+  filter: drop-shadow(0 2px 4px var(--on-heading-shadow-2));
+}
+
+.theme-dark .markdown-preview-view :is(h3, h4, h5, h6),
+.theme-dark .cm-s-obsidian :is(.HyperMD-header-3, .HyperMD-header-4, .HyperMD-header-5, .HyperMD-header-6) {
+  filter: drop-shadow(0 1px 3px var(--on-heading-shadow-3));
+}
+
+/* every piece of text inside those lines becomes see-through so the
+   gradient shows; "#" markers keep the gradient too (not dimmed) */
+.theme-dark .inline-title,
+.theme-dark .markdown-preview-view :is(h1, h2, h3, h4, h5, h6),
+.theme-dark .cm-s-obsidian :is(.HyperMD-header-1, .HyperMD-header-2, .HyperMD-header-3,
+                               .HyperMD-header-4, .HyperMD-header-5, .HyperMD-header-6),
+.theme-dark .cm-s-obsidian :is(.HyperMD-header-1, .HyperMD-header-2, .HyperMD-header-3,
+                               .HyperMD-header-4, .HyperMD-header-5, .HyperMD-header-6) * {
+  -webkit-text-fill-color: transparent;
+          color: transparent;
+}
+
+/* ---------------------------------------------------------
+   Bold / lists / quotes
+   --------------------------------------------------------- */
+.theme-dark strong,
+.theme-dark .cm-strong {
+  color: var(--bold-color);
+  font-weight: 650;
+}
+
+/* Quotes — same look in Reading view, Live Preview and Source mode:
+   3px teal bar on the left, faint teal background, rounded right corners.
+   Only standard quotes; the --blockquote-* variables are left alone because
+   the Admonition plugin reads them. */
+.theme-dark .markdown-rendered blockquote {
+  border-left: 3px solid var(--on-teal);
+  background: var(--on-quote-background);
+  border-radius: 0 var(--radius-s) var(--radius-s) 0;
+}
+
+/* Source mode: each quote line gets the bar and the background */
+.theme-dark .markdown-source-view.mod-cm6:not(.is-live-preview) .HyperMD-quote {
+  border-left: 3px solid var(--on-teal);
+  background: var(--on-quote-background);
+}
+
+/* Live Preview: Obsidian draws its own bar and clears the background,
+   so restore the background and make its bar 3px like the other modes */
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote {
+  background-color: var(--on-quote-background);
+}
+
+/* nested quotes get deeper shades, matching Reading view, where each level's
+   5% background stacks on its parent's (1 - 0.95^level) */
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote-2 { background-color: var(--on-quote-background-2); }
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote-3 { background-color: var(--on-quote-background-3); }
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote-4 { background-color: var(--on-quote-background-4); }
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote-5 { background-color: var(--on-quote-background-5); }
+
+/* space where the nesting level changes, like the gap around a nested quote in
+   Reading view; the space goes on the shallower line so it keeps that level's
+   bars and shade (deeper quote starts -> pad below, deeper quote ends -> pad above) */
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote-1:has(+ :is(.HyperMD-quote-2, .HyperMD-quote-3, .HyperMD-quote-4, .HyperMD-quote-5)),
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote-2:has(+ :is(.HyperMD-quote-3, .HyperMD-quote-4, .HyperMD-quote-5)),
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote-3:has(+ :is(.HyperMD-quote-4, .HyperMD-quote-5)),
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote-4:has(+ .HyperMD-quote-5) {
+  padding-bottom: var(--p-spacing);
+}
+
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview :is(.HyperMD-quote-2, .HyperMD-quote-3, .HyperMD-quote-4, .HyperMD-quote-5) + .HyperMD-quote-1,
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview :is(.HyperMD-quote-3, .HyperMD-quote-4, .HyperMD-quote-5) + .HyperMD-quote-2,
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview :is(.HyperMD-quote-4, .HyperMD-quote-5) + .HyperMD-quote-3,
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote-5 + .HyperMD-quote-4 {
+  padding-top: var(--p-spacing);
+}
+
+.theme-dark .markdown-source-view.mod-cm6.is-live-preview :is(.HyperMD-quote, .cm-blockquote-border)::before {
+  border-inline-start-width: 3px;
+}
+
+/* editor: round only the outer corners of a multi-line quote */
+.theme-dark .markdown-source-view.mod-cm6 .HyperMD-quote:not(:has(+ .HyperMD-quote)) {
+  border-bottom-right-radius: var(--radius-s);
+}
+
+.theme-dark .markdown-source-view.mod-cm6 .HyperMD-quote:not(.HyperMD-quote + .HyperMD-quote) {
+  border-top-right-radius: var(--radius-s);
+}
+
+/* ---------------------------------------------------------
+   Tables — blue header, teal rule, soft row hover
+   --------------------------------------------------------- */
+.theme-dark .markdown-rendered table,
+.theme-dark .cm-s-obsidian table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.theme-dark .markdown-rendered th,
+.theme-dark .cm-s-obsidian th {
+  color: var(--table-header-color);
+  font-weight: 600;
+  text-align: left;
+  border: 0;
+  border-bottom: 2px solid var(--on-teal);
+  padding: 8px 14px;
+}
+
+.theme-dark .markdown-rendered td,
+.theme-dark .cm-s-obsidian td {
+  border: 0;
+  border-bottom: 1px solid var(--on-line);
+  padding: 8px 14px;
+}
+
+.theme-dark .markdown-rendered tbody tr:hover,
+.theme-dark .cm-s-obsidian tbody tr:hover { background: var(--table-row-background-hover); }
+
+/* Content-sized tables: text keeps the readable line length; a table is as wide
+   as its columns need — at least the text column, at most the full pane
+   (the note panes are measured via container-type, set near the top) */
+
+/* Reading view: the outer box spans the pane, giving wide tables room to grow.
+   Live Preview tables can only be widened with an "important" override (Obsidian
+   forces their margin that way), so that part lives in the optional snippet
+   snippets/cloudy-moon-tables.css; without it, Live
+   Preview tables stay within the text column. */
+.theme-dark .markdown-preview-view .markdown-preview-sizer .el-table {
+  width: calc(100cqw - 64px);
+  max-width: none;
+  margin-left: calc(50% - 50cqw + 32px);
+}
+
+/* the table itself shrinks to its content and stays centred on the text column */
+.theme-dark .markdown-preview-view .el-table > table,
+.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget .table-wrapper {
+  width: fit-content;
+  min-width: min(100%, var(--file-line-width));
+  margin-inline: auto;
+}
+
+/* ---------------------------------------------------------
+   Status pills — use tags in table cells: #active  #complete
+   (#blocked and #urgent are included as extras)
+   --------------------------------------------------------- */
+.theme-dark .tag,
+.theme-dark a.tag {
+  background: var(--on-tag-background);
+  color: var(--on-blue-hi);
+  border: 0;
+  border-radius: 999px;
+  padding: 1px 10px;
+  font-size: 0.85em;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.theme-dark .tag:hover {
+  background: var(--on-tag-background-hover);
+  color: var(--text-accent-hover);
+}
+
+.theme-dark .tag[href="#complete"],
+.theme-dark .tag[href="#done"] {
+  background: var(--on-tag-done-background);
+  color: var(--on-tag-done-color);
+}
+
+.theme-dark .tag[href="#blocked"],
+.theme-dark .tag[href="#urgent"] {
+  background: var(--on-tag-blocked-background);
+  color: var(--on-tag-blocked-color);
+}
+
+/* ---------------------------------------------------------
+   Code blocks — dark plate, blue left rule
+   --------------------------------------------------------- */
+.theme-dark .markdown-rendered pre,
+.theme-dark .cm-s-obsidian .HyperMD-codeblock {
+  background-color: var(--code-background);
+}
+
+.theme-dark .markdown-rendered pre {
+  border: 1px solid var(--on-line);
+  border-left: 3px solid var(--on-blue);
+  border-radius: var(--radius-m);
+  padding: 12px 16px;
+}
+
+.theme-dark .markdown-rendered :not(pre) > code,
+.theme-dark .cm-s-obsidian .cm-inline-code {
+  background: var(--on-inline-code-background);
+  color: var(--code-normal);
+  border-radius: var(--radius-s);
+  padding: 1px 6px;
+}
+
+/* ---------------------------------------------------------
+   Mermaid flowcharts — Obsidian draws diagrams in Mermaid's light theme and
+   inverts them for dark mode, which leaves violet borders and violet-tinted
+   boxes. For flowcharts, undo the inversion and colour them from the theme.
+   Mermaid writes its own styles into each diagram with ID selectors, so the
+   rules below use :is(svg, #cloudy-moon-boost) — that ID never matches anything, but it gives the
+   selector ID-level specificity, enough to win without an "important" override. Colours set
+   per node in the diagram itself (style / classDef) still win.
+   Other diagram types keep Obsidian's default look.
+   --------------------------------------------------------- */
+.theme-dark .mermaid > svg[aria-roledescription^="flowchart"] { filter: none; }
+
+.theme-dark .mermaid :is(svg, #cloudy-moon-boost)[aria-roledescription^="flowchart"] .node :is(rect, circle, ellipse, polygon, path) {
+  fill: var(--on-night-3);
+  stroke: var(--h5-color);
+}
+
+.theme-dark .mermaid :is(svg, #cloudy-moon-boost)[aria-roledescription^="flowchart"] .flowchart-link {
+  stroke: var(--text-muted);
+}
+
+.theme-dark .mermaid :is(svg, #cloudy-moon-boost)[aria-roledescription^="flowchart"] :is(.marker, .arrowMarkerPath, .arrowheadPath) {
+  fill: var(--text-muted);
+  stroke: var(--text-muted);
+}
+
+.theme-dark .mermaid :is(svg, #cloudy-moon-boost)[aria-roledescription^="flowchart"] :is(.label, .nodeLabel, .nodeLabel *, .cluster-label text) {
+  color: var(--text-normal);
+  fill: var(--text-normal);
+}
+
+.theme-dark .mermaid :is(svg, #cloudy-moon-boost)[aria-roledescription^="flowchart"] :is(.edgeLabel, .edgeLabel p, .edgeLabel span, .labelBkg) {
+  background-color: var(--background-primary);
+  color: var(--text-muted);
+}
+
+.theme-dark .mermaid :is(svg, #cloudy-moon-boost)[aria-roledescription^="flowchart"] .edgeLabel rect {
+  fill: var(--background-primary);
+  opacity: 1;
+}
+
+.theme-dark .mermaid :is(svg, #cloudy-moon-boost)[aria-roledescription^="flowchart"] .cluster rect {
+  fill: var(--on-quote-background);
+  stroke: var(--on-teal);
+}
+
+/* ---------------------------------------------------------
+   Controls, scrollbars, selection
+   --------------------------------------------------------- */
+.theme-dark button.mod-cta,
+.theme-dark .mod-cta {
+  background-color: var(--on-blue);
+  color: var(--text-on-accent);
+}
+.theme-dark button.mod-cta:hover { background-color: var(--on-blue-hi); }
+
+.theme-dark input[type="text"]:focus,
+.theme-dark input[type="search"]:focus { box-shadow: 0 0 0 2px var(--on-focus-ring); }
+.theme-dark .checkbox-container.is-enabled { background-color: var(--on-blue); }
+
+.theme-dark input[type="checkbox"]:checked {
+  background-color: var(--checkbox-color);
+  border-color: var(--checkbox-color);
+}
+.theme-dark ::selection { background: var(--text-selection); }
+
+.theme-dark ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.theme-dark ::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-bg);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.theme-dark ::-webkit-scrollbar-thumb:hover { background-color: var(--scrollbar-active-thumb-bg); }
+
+/* Mobile: skip the cloud texture to save a little GPU work */
+.is-mobile.theme-dark .workspace-leaf-content[data-type="markdown"] .markdown-source-view.mod-cm6 > .cm-editor > .cm-scroller,
+.is-mobile.theme-dark .workspace-leaf-content[data-type="markdown"] .markdown-preview-view:not(.markdown-embed .markdown-preview-view) { background-image: none; }

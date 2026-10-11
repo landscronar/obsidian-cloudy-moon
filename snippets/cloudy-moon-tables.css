@@ -1,0 +1,13 @@
+
+/* measure widths against the whole note pane */
+.theme-dark .markdown-source-view {
+  container-type: inline-size;
+}
+
+/* the outer box spans the pane, giving wide tables room to grow; the theme
+   then shrinks the table itself to its content, centred on the text column */
+.theme-dark .markdown-source-view .cm-content .cm-table-widget {
+  width: calc(100cqw - 64px) !important;
+  max-width: none !important;
+  margin-left: calc(50% - 50cqw + 32px) !important;
+}
